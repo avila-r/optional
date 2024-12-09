@@ -49,4 +49,3 @@ func (o With[T]) Recover(supplier func() T) With[T] {
 
 	return o
 }
-

@@ -13,7 +13,7 @@ func (o With[T]) OrElseGet(def T) With[T] {
 		return o
 	}
 
-	return Some(def)
+	return New(def)
 }
 
 func (o With[T]) OrElse(supplier func() With[T]) With[T] {

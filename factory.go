@@ -1,6 +1,6 @@
 package optional
 
-func Some[T any](v T) With[T] {
+func New[T any](v T) With[T] {
 	return With[T]{
 		value: &v,
 		empty: false,
