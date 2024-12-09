@@ -13,10 +13,18 @@ func (o With[T]) IsEmpty() bool {
 	return o.empty
 }
 
-func (o With[T]) Unwrap() *T {
+func (o With[T]) Get() *T {
 	return o.value
 }
 
-func (o With[T]) Get() T {
+func (o With[T]) Unwrap() T {
 	return *o.value
+}
+
+func (o With[T]) Take() (*T, error) {
+	if o.IsEmpty() {
+		return nil, ErrNoneValueTaken
+	}
+
+	return o.value, nil
 }

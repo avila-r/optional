@@ -1,33 +1,15 @@
 package optional
 
-func (o With[T]) IfPresent(do func(value T)) {
+func (o With[T]) IfPresent(do func()) {
 	if o.IsPresent() {
-		do(*o.value)
+		do()
 	}
 }
 
-func (o With[T]) OrElse(def T) T {
-	if o.IsPresent() {
-		return *o.value
-	}
-
-	return def
-}
-
-func (o With[T]) OrElseGet(supplier func() T) T {
-	if o.IsPresent() {
-		return *o.value
-	}
-
-	return supplier()
-}
-
-func (o With[T]) OrElsePanic() T {
+func (o With[T]) IfEmpty(do func()) {
 	if o.IsEmpty() {
-		panic("Optional value is not present")
+		do()
 	}
-
-	return *o.value
 }
 
 func (o With[T]) Filter(predicate func(value T) bool) With[T] {
